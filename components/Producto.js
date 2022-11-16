@@ -25,9 +25,12 @@ const Producto = ({ producto }) => {
         <p className='mt-5 font-black text-4xl text-amber-500'>
           {formatearDinero(precio)}
         </p>
+
+      </div>
+      <div className=''>
         <button
           type="button"
-          className='bg-indigo-600 hover:bg-indigo-800 text-white w-full mt-5 p-3 uppercase font-bold'
+          className='bg-indigo-600 hover:bg-indigo-800 text-white h-full mt-5 bottom:2px p-3 uppercase font-bold '
           onClick={() => { handleSetProducto(producto), handleChangeModal() }}
         >
           Agregar

@@ -3,9 +3,13 @@ import Slidebar from '../components/Slidebar';
 import Modal from 'react-modal'
 import useQuiosco from '../hooks/useQuiosco';
 import ModalProduto from '../components/ModalProduto';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Pasos from '../components/Pasos';
+
 
 const customStyles = {
-  content:{
+  content: {
     top: "50%",
     left: "50%",
     right: "auto",
@@ -23,7 +27,7 @@ export default function Layout({ children, pagina }) {
   return (
     <>
       <Head>
-        <title>Café - {pagina}</title>
+        <title >Café - {pagina}</title>
         <meta name="description" content="Quiosco Cafetería" />
       </Head>
 
@@ -34,6 +38,7 @@ export default function Layout({ children, pagina }) {
 
         <main className="md:w-8/12 xl:w-3/4 2xl:w4/5 h-screen overflow-y-scroll">
           <div className='p-10 '>
+            <Pasos/>
             {children}
           </div>
         </main>
@@ -43,9 +48,12 @@ export default function Layout({ children, pagina }) {
           isOpen={modal}
           style={customStyles}
         >
-          <ModalProduto/>
+          <ModalProduto />
         </Modal>
-      ) }
+
+      )}
+      <ToastContainer  autoClose={1000} />
+
     </>
   );
 }

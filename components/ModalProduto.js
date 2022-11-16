@@ -15,10 +15,12 @@ const ModalProduto = () => {
 
   useEffect(() => {
     if (pedido.some(pedidoState => pedidoState.id === producto.id)) {
+      const productoEdicion = pedido.find((pedidoState => pedidoState.id === producto.id))
       setEdicion(true)
+      setCantidad(productoEdicion.cantidad)
     }
-  }, [])
-  
+  }, [producto, pedido])
+
 
   return (
     <div className='md:flex gap-10'>
@@ -88,7 +90,8 @@ const ModalProduto = () => {
             handleAgregarPedido({ ...producto, cantidad })
           }}
         >
-          Añadir Al Pedido </button>
+          {edicion ? "Guardar Cambios" : "añadir al pedido"}
+         </button>
       </div>
     </div>
   )
