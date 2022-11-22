@@ -91,15 +91,34 @@ const QuioscoProvider = ({ children }) => {
 
   const colocarOrden = async (e) => {
     e.preventDefault()
-    console.log("Enviando orden...")
-    console.log(pedido)
-    console.log(nombre)
+
+    try {
+      await axios.post("/api/ordenes", { pedido, nombre, total, fecha: Date.now().toString() })
+      //Reset la app
+
+      setCategoriaActual(categorias[0])
+      setPedido([])
+      setNombre("")
+      setTotal(0)
+
+      toast.success("Pedido realizado correctamente")
+
+      setTimeout(() => {
+        router.push('/')
+      },3000)
+    } catch (error) {
+      console.log(error)
+    }
+
+
   }
 
   useEffect(() => {
     const nuevoTotal = pedido.reduce((total, producto) => (producto.precio * producto.cantidad) + total, 0)
     setTotal(nuevoTotal)
   }, [pedido])
+
+
   return (
 
     <QuioscoContext.Provider
